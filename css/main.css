@@ -70,3 +70,24 @@ a {
     margin: 5px 0 22px 0;
     display: none;
 }
+/* set form error msg styles */
+.error-msg {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(255, 0, 0, 0.22);
+    color: #490404;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+}
+
+/* set form success msg styles */
+.success-msg {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(83, 154, 21, 0.22);
+    color: rgb(23 36 11 / 83%);
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+}

@@ -13,7 +13,6 @@
 
 
     <?php
-    include 'db.php';
     include './code/header.php';
     include './code/footer.php';
     ?>
