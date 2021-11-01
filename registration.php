@@ -1,18 +1,43 @@
-<?php include './index.php'; ?>
+<?php
+session_start();
+include './code/header.php';
+include 'db.php';
 
-<form name="registration-form" action="server.php" method="post" onsubmit="return validateForm()">
+$conn = OpenCon();
+
+if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+
+    $query = "SELECT email FROM members WHERE email = '$email'";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_num_rows($result) > 0) {
+        header('Location: registration.php?session-error-message=This email already exists. Try again.');
+        exit;
+    } else {
+        $query1 = "INSERT INTO members (name, email, password) VALUES ('$name', '$email', '$password')";
+        $result1 = mysqli_query($conn, $query1);
+        header('Location: registration.php?session-success-message=Successfully Registered');
+        exit;
+    }
+}
+?>
+
+<form name="registration-form" action="server_register.php" method="post" onsubmit="return validateForm()">
     <div class="container">
         <h1>Register</h1>
         <p>Please fill in this form to create an account.</p><br>
         <span class="registration-error" id="registration-error"></span>
-            <?php
-            if (isset($_GET['session-success-message'])) {
-                echo '<span class="success-msg">'.$_GET['session-success-message'].'</span>';
-            }
-            if (isset($_GET['session-error-message'])) {
-                echo '<span class="error-msg">'.$_GET['session-error-message'].'</span>';
-            }
-            ?>
+        <?php
+        if (isset($_GET['session-success-message'])) {
+            echo '<span class="success-msg">' . $_GET['session-success-message'] . '</span>';
+        }
+        if (isset($_GET['session-error-message'])) {
+            echo '<span class="error-msg">' . $_GET['session-error-message'] . '</span>';
+        }
+        ?>
 
         <hr>
 
