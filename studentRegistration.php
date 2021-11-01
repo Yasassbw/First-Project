@@ -1,5 +1,4 @@
 <?php
-
 include './code/header.php';
 
 $conn = OpenCon();
@@ -23,11 +22,10 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
     }
 }
 ?>
-
-<form name="registration-form" action="server_register.php" method="post" onsubmit="return validateForm()">
+<form name="student-registration-form" action="" method="post">
     <div class="container">
-        <h1>Register</h1>
-        <p>Please fill in this form to create an account.</p><br>
+        <h1>Add Student</h1>
+        <p>Please fill in this form to add a new student.</p><br>
         <span class="registration-error" id="registration-error"></span>
         <?php
         if (isset($_GET['session-success-message'])) {
@@ -46,18 +44,31 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
         <label for="email"><b>Email</b></label>
         <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" id="password" required>
+        <label for="address"><b>Address</b></label>
+        <input type="text" placeholder="Enter Address" name="address" id="address" required>
 
-        <label for="psw-repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="password-repeat" id="psw-repeat" required>
+        <label for="gender"><b>Gender</b></label><br>
+        <input type="radio" id="male" name="gender" value="HTML" required>
+        <label for="gender">Male</label><br>
+        <input type="radio" id="female" name="gender" value="CSS" required>
+        <label for="css">female</label><br><br>
+
+        <label for="course"><b>Course</b></label>
+        <select name="course" id="course" required>
+            <option disabled>Choose one</option>
+            <?php
+            // A sample product array
+            $products = array("Mobile", "Laptop", "Tablet", "Camera");
+
+            // Iterating through the product array
+            foreach ($products as $item) {
+                echo "<option value='strtolower($item)'>$item</option>";
+            }
+            ?>
+        </select>
         <hr>
 
-        <button type="submit" class="registerbtn">Register</button>
+        <button type="submit" class="registerbtn">Submit</button>
     </div>
 
-    <div class="container signin">
-        <p>Already have an account? <a href="/login.php">Login</a>.</p>
-    </div>
 </form>
-

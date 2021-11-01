@@ -12,8 +12,15 @@ function checkLogin($con)
             $GLOBALS['currentUserName'] = $data['name'];
             return $data;
         }
+    }else {
+        return [];
     }
 
     header('Location: login.php');
-    die;
+    exit;
+}
+
+function getCurrentPage()
+{
+    return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
 }

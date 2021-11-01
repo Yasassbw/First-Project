@@ -1,13 +1,3 @@
-<?php
-session_start();
-
-include 'db.php';
-include 'functions.php';
-
-$conn = OpenCon();
-$currentUser = checkLogin($conn);
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +6,9 @@ $currentUser = checkLogin($conn);
 
     <?php
     include './code/header.php';
+
+    include 'studentsList.php';
+
     include './code/footer.php';
     ?>
 
