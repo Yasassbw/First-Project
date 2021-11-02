@@ -24,7 +24,7 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
 }
 ?>
 
-<form name="registration-form" action="server_register.php" method="post" onsubmit="return validateForm()">
+<form name="registration-form" action="" method="post" onsubmit="return validateForm()">
     <div class="container">
         <h1>Register</h1>
         <p>Please fill in this form to create an account.</p><br>

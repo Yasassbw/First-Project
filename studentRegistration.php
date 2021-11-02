@@ -3,21 +3,23 @@ include './code/header.php';
 
 $conn = OpenCon();
 
-if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
-
+if (isset($_POST['name'], $_POST['email'], $_POST['address'], $_POST['gender'], $_POST['course_id'], $_POST['student_id'])) {
+    $student_id = $_POST['student_id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = md5($_POST['password']);
+    $address = $_POST['address'];
+    $gender = $_POST['gender'];
+    $course_id = $_POST['course_id'];
 
-    $query = "SELECT email FROM members WHERE email = '$email'";
+    $query = "SELECT email FROM students WHERE email = '$email'";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
-        header('Location: registration.php?session-error-message=This email already exists. Try again.');
+        header('Location: studentRegistration.php?session-error-message=This email already exists. Try again.');
         exit;
     } else {
-        $query1 = "INSERT INTO members (name, email, password) VALUES ('$name', '$email', '$password')";
+        $query1 = "INSERT INTO students (student_id, name, email, address, gender, course_id) VALUES ('$student_id', '$name' , '$email', '$address', '$gender', '$course_id')";
         $result1 = mysqli_query($conn, $query1);
-        header('Location: registration.php?session-success-message=Successfully Registered');
+        header('Location: studentRegistration.php?session-success-message=Successfully added');
         exit;
     }
 }
@@ -38,6 +40,9 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
 
         <hr>
 
+        <label for="student_id"><b>Student ID</b></label>
+        <input type="text" placeholder="Enter Student ID" name="student_id" id="student_id" required>
+
         <label for="name"><b>Name</b></label>
         <input type="text" placeholder="Enter Name" name="name" id="name" required>
 
@@ -48,21 +53,21 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
         <input type="text" placeholder="Enter Address" name="address" id="address" required>
 
         <label for="gender"><b>Gender</b></label><br>
-        <input type="radio" id="male" name="gender" value="HTML" required>
+        <input type="radio" id="male" name="gender" value="male" required>
         <label for="gender">Male</label><br>
-        <input type="radio" id="female" name="gender" value="CSS" required>
+        <input type="radio" id="female" name="gender" value="female" required>
         <label for="css">female</label><br><br>
 
-        <label for="course"><b>Course</b></label>
-        <select name="course" id="course" required>
+        <label for="course_id"><b>Course</b></label>
+        <select name="course_id" id="course_id" required>
             <option disabled>Choose one</option>
             <?php
             // A sample product array
-            $products = array("Mobile", "Laptop", "Tablet", "Camera");
+            $products = array(1, 2, 3, 4);
 
             // Iterating through the product array
             foreach ($products as $item) {
-                echo "<option value='strtolower($item)'>$item</option>";
+                echo "<option value='$item'>$item</option>";
             }
             ?>
         </select>

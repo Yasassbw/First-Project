@@ -11,6 +11,8 @@ function checkLogin($con)
             $data = mysqli_fetch_assoc($result);
             $GLOBALS['currentUserName'] = $data['name'];
             return $data;
+        }else {
+            return [];
         }
     }else {
         return [];
