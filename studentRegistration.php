@@ -2,6 +2,7 @@
 include './code/header.php';
 
 $conn = OpenCon();
+$coursesList = getCoursesList($conn);
 
 $id = null;
 $student_id = null;
@@ -60,9 +61,9 @@ if (isset($_POST['update'])) {
     $gender = $_POST['gender'];
     $course_id = $_POST['course_id'];
 
-    mysqli_query($conn, "UPDATE students SET name='$name', address='$address' WHERE id='$id'");
-    $_SESSION['message'] = "Address updated!";
-    header('location: index.php');
+    mysqli_query($conn, "UPDATE students SET name='$name', email='$email', address='$address', gender='$gender', course_id='$course_id' WHERE id='$id'");
+    $_SESSION['message'] = "Updated!";
+    header('location: index.php?session-success-message=Successfully updated');
 }
 
 ?>
@@ -97,21 +98,18 @@ if (isset($_POST['update'])) {
         <input type="text" placeholder="Enter Address" name="address" id="address" value="<?php echo $address ?>" required>
 
         <label for="gender"><b>Gender</b></label><br>
-        <input type="radio" id="male" name="gender" value="male" required>
+        <input type="radio" id="male" name="gender" value="male" <?php if ($gender == 'male') echo 'checked="checked"'; ?> required>
         <label for="gender">Male</label><br>
-        <input type="radio" id="female" name="gender" value="female" required>
+        <input type="radio" id="female" name="gender" value="female" <?php if ($gender == 'female') echo 'checked="checked"'; ?> required>
         <label for="css">female</label><br><br>
 
         <label for="course_id"><b>Course</b></label>
         <select name="course_id" id="course_id" required>
             <option disabled>Choose one</option>
             <?php
-            // A sample product array
-            $products = array(1, 2, 3, 4);
 
-            // Iterating through the product array
-            foreach ($products as $item) {
-                echo "<option value='$item'>$item</option>";
+            foreach ($coursesList as $item => $value) {
+                echo "<option value='".$value['id']."'>".$value['name']."</option>";
             }
             ?>
         </select>

@@ -41,3 +41,18 @@ function getStudentsList($con)
         return [];
     }
 }
+
+function getCoursesList($con)
+{
+    $data = [];
+    $query = "SELECT * FROM courses";
+    $result = mysqli_query($con, $query);
+    if ($result && mysqli_num_rows($result) > 0) {
+        while($row = $result->fetch_assoc()) {
+            array_push($data, $row);
+        }
+        return $data;
+    }else {
+        return [];
+    }
+}

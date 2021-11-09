@@ -10,7 +10,7 @@ if (isset($_GET['delete'])) {
     $del = mysqli_query($conn, "DELETE FROM students WHERE id = '$id'");
 
     if ($del) {
-        header("location:studentList.php");
+        header("location:studentList.php?session-error-message=Successfully deleted");
         exit;
     } else {
         echo "Error deleting record";
@@ -18,6 +18,14 @@ if (isset($_GET['delete'])) {
 }
 ?>
 <div class="container">
+    <?php
+    if (isset($_GET['session-success-message'])) {
+        echo '<span class="success-msg">' . $_GET['session-success-message'] . '</span>';
+    }
+    if (isset($_GET['session-error-message'])) {
+        echo '<span class="error-msg">' . $_GET['session-error-message'] . '</span>';
+    }
+    ?>
     <a href="studentRegistration.php">Add Student</a><br>
     <ul class="list-group">
 
@@ -33,13 +41,22 @@ if (isset($_GET['delete'])) {
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
-                <th scope="col">Course ID</th>
+                <th scope="col">Course Code</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>';
 
                 foreach ($studentsList as $item => $value) {
+
+                    $courseID = $value['course_id'];
+                    $courseCode = null;
+                    $record = mysqli_query($conn, "SELECT code FROM courses WHERE id = '$courseID'");
+                    if ($record) {
+                        $n = mysqli_fetch_array($record);
+                        $courseCode = $n['code'];
+                    }
+
                     echo '
         <tr>
                 <th scope="row"><img src="" width="80px" height="80px"></th>
@@ -47,7 +64,7 @@ if (isset($_GET['delete'])) {
                 <td>' . $value['name'] . '</td>
                 <td>' . $value['email'] . '</td>
                 <td>' . $value['address'] . '</td>
-                <td>' . $value['course_id'] . '</td>
+                <td>' . $courseCode . '</td>
                 <td><a href="studentRegistration.php?edit=' . $value['id'] . '">Edit</a></td>
                 <td><a href="studentsList.php?delete=' . $value['id'] . '" onclick="return confirm(`Are you sure you want to delete this record (' . $value['name'] . ')?`)">Delete</a></td>
             </tr>
