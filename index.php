@@ -5,7 +5,7 @@
 
 
     <?php
-    include './code/header.php';
+//    include './code/header.php';
 
     include 'studentsList.php';
 

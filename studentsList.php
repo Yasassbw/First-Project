@@ -1,6 +1,21 @@
 <?php
+
+include './code/header.php';
 $conn = OpenCon();
 $studentsList = getStudentsList($conn);
+
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+
+    $del = mysqli_query($conn, "DELETE FROM students WHERE id = '$id'");
+
+    if ($del) {
+        header("location:studentList.php");
+        exit;
+    } else {
+        echo "Error deleting record";
+    }
+}
 ?>
 <div class="container">
     <a href="studentRegistration.php">Add Student</a><br>
@@ -19,6 +34,7 @@ $studentsList = getStudentsList($conn);
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
                 <th scope="col">Course ID</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>';
@@ -32,10 +48,12 @@ $studentsList = getStudentsList($conn);
                 <td>' . $value['email'] . '</td>
                 <td>' . $value['address'] . '</td>
                 <td>' . $value['course_id'] . '</td>
+                <td><a href="studentRegistration.php?edit=' . $value['id'] . '">Edit</a></td>
+                <td><a href="studentsList.php?delete=' . $value['id'] . '" onclick="return confirm(`Are you sure you want to delete this record (' . $value['name'] . ')?`)">Delete</a></td>
             </tr>
         ';
                 }
-            }else {
+            } else {
                 echo '<p class="list-group-item d-flex justify-content-between align-items-center">No items found</p>';
             }
 
