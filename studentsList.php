@@ -57,9 +57,11 @@ if (isset($_GET['delete'])) {
                         $courseCode = $n['code'];
                     }
 
+                    $photo = ($value['photo']) ? : './images/photo.jpeg';
+
                     echo '
         <tr>
-                <th scope="row"><img src="" width="80px" height="80px"></th>
+                <th scope="row"><img src="' . $photo . '" width="80px" height="80px"></th>
                 <td>' . $value['student_id'] . '</td>
                 <td>' . $value['name'] . '</td>
                 <td>' . $value['email'] . '</td>
