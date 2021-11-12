@@ -17,25 +17,30 @@ if (isset($_GET['delete'])) {
     }
 }
 ?>
-<div class="container">
-    <?php
-    if (isset($_GET['session-success-message'])) {
-        echo '<span class="success-msg">' . $_GET['session-success-message'] . '</span>';
-    }
-    if (isset($_GET['session-error-message'])) {
-        echo '<span class="error-msg">' . $_GET['session-error-message'] . '</span>';
-    }
-    ?>
-    <a href="studentRegistration.php">Add Student</a><br>
-    <ul class="list-group">
-
-        <table class="table table-dark">
-            <thead>
-
+<div class="container pages-container">
+    <div  class="row">
+        <div class="col-lg-2" style="background-color: #fff">
+            <?php include 'leftNav.php'; ?>
+        </div>
+        <div class="col-lg-10" style="background-color: #fff;position: relative">
             <?php
-            if (is_array($studentsList) && count($studentsList)) {
+            if (isset($_GET['session-success-message'])) {
+                echo '<span class="success-msg">' . $_GET['session-success-message'] . '</span>';
+            }
+            if (isset($_GET['session-error-message'])) {
+                echo '<span class="error-msg">' . $_GET['session-error-message'] . '</span>';
+            }
+            ?>
+            <a href="studentRegistration.php" class="add-button">Add Student</a><br>
+            <ul class="list-group">
 
-                echo ' <tr>
+                <table class="table table-dark">
+                    <thead>
+
+                    <?php
+                    if (is_array($studentsList) && count($studentsList)) {
+
+                        echo ' <tr>
                 <th scope="col">Photo</th>
                 <th scope="col">Student ID</th>
                 <th scope="col">Name</th>
@@ -47,19 +52,19 @@ if (isset($_GET['delete'])) {
             </thead>
             <tbody>';
 
-                foreach ($studentsList as $item => $value) {
+                        foreach ($studentsList as $item => $value) {
 
-                    $courseID = $value['course_id'];
-                    $courseCode = null;
-                    $record = mysqli_query($conn, "SELECT code FROM courses WHERE id = '$courseID'");
-                    if ($record) {
-                        $n = mysqli_fetch_array($record);
-                        $courseCode = $n['code'];
-                    }
+                            $courseID = $value['course_id'];
+                            $courseCode = null;
+                            $record = mysqli_query($conn, "SELECT code FROM courses WHERE id = '$courseID'");
+                            if ($record) {
+                                $n = mysqli_fetch_array($record);
+                                $courseCode = $n['code'];
+                            }
 
-                    $photo = ($value['photo']) ? : './images/photo.jpeg';
+                            $photo = ($value['photo']) ? : './images/photo.jpeg';
 
-                    echo '
+                            echo '
         <tr>
                 <th scope="row"><img src="' . $photo . '" width="80px" height="80px"></th>
                 <td>' . $value['student_id'] . '</td>
@@ -71,13 +76,16 @@ if (isset($_GET['delete'])) {
                 <td><a href="studentsList.php?delete=' . $value['id'] . '" onclick="return confirm(`Are you sure you want to delete this record (' . $value['name'] . ')?`)">Delete</a></td>
             </tr>
         ';
-                }
-            } else {
-                echo '<p class="list-group-item d-flex justify-content-between align-items-center">No items found</p>';
-            }
+                        }
+                    } else {
+                        echo '<p class="list-group-item d-flex justify-content-between align-items-center">No items found</p>';
+                    }
 
-            ?>
-            </tbody>
-        </table>
-    </ul>
+                    ?>
+                    </tbody>
+                </table>
+            </ul>
+        </div>
+    </div>
+
 </div>

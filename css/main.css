@@ -13,6 +13,13 @@ body {
     background-color: white;
 }
 
+.pages-container {
+    padding: 16px;
+    background-color: white;
+    border-radius: 5px;
+    width: 1500px !important;
+}
+
 /* Full-width input fields */
 input[type=text], input[type=password], input[type=email], input[type=file], select {
     width: 100%;
@@ -50,16 +57,12 @@ hr {
     opacity: 1;
 }
 
-/* Add a blue text color to links */
-a {
-    color: dodgerblue;
-}
-
 /* Set a grey background color and center the text of the "sign in" section */
 .signin {
     background-color: #f1f1f1;
     text-align: center;
 }
+
 /* set form error msg styles */
 .registration-error {
     width: 100%;
@@ -70,6 +73,7 @@ a {
     margin: 5px 0 22px 0;
     display: none;
 }
+
 /* set form error msg styles */
 .error-msg {
     width: 100%;
@@ -95,4 +99,72 @@ a {
 .student-photo {
     width: 180px;
     margin-bottom: 20px;
+}
+
+.left-nav {
+    margin-top: 8rem;
+}
+
+.left-nav ul {
+    list-style: none;
+    padding-inline-start: 0 !important;
+}
+
+.left-nav ul li {
+    list-style: none;
+    text-transform: uppercase;
+    width: 100px;
+    margin-top: 15px;
+    text-decoration: none;
+    border-bottom: 2px solid #023860;
+    background-color: #89c1f159;
+    padding: 10px;
+    min-width: 180px;
+    border-radius: 3px;
+}
+
+.left-nav ul li:hover {
+    border-bottom: 2px solid #0179d2;
+}
+
+.left-nav ul li.active {
+    border-bottom: 2px solid #023860;
+    background-color: rgb(57 158 241);
+    color: #fff !important;
+}
+
+.left-nav ul li.active a {
+    color: #fff !important;
+}
+
+.left-nav ul li a {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.left-nav ul li a:hover {
+    color: #000305;
+}
+
+.add-button {
+    background: #007eff;
+    padding: 10px;
+    min-width: 150px;
+    border-radius: 5px;
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    right: 30px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.add-button:hover {
+    background: rgba(0, 126, 255, 0.82);
+    text-decoration: none;
+    color: #000305;
+}
+
+table {
+    margin-top: 4rem;
 }

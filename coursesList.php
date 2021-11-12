@@ -17,25 +17,30 @@ if (isset($_GET['delete'])) {
     }
 }
 ?>
-<div class="container">
-    <?php
-    if (isset($_GET['session-success-message'])) {
-        echo '<span class="success-msg">' . $_GET['session-success-message'] . '</span>';
-    }
-    if (isset($_GET['session-error-message'])) {
-        echo '<span class="error-msg">' . $_GET['session-error-message'] . '</span>';
-    }
-    ?>
-    <a href="courseRegistration.php">Add Course</a><br>
-    <ul class="list-group">
-
-        <table class="table table-dark">
-            <thead>
-
+<div class="container pages-container">
+    <div class="row">
+        <div class="col-lg-2" style="background-color: #fff">
+            <?php include 'leftNav.php'; ?>
+        </div>
+        <div class="col-lg-10" style="background-color: #fff">
             <?php
-            if (is_array($coursesList) && count($coursesList)) {
+            if (isset($_GET['session-success-message'])) {
+                echo '<span class="success-msg">' . $_GET['session-success-message'] . '</span>';
+            }
+            if (isset($_GET['session-error-message'])) {
+                echo '<span class="error-msg">' . $_GET['session-error-message'] . '</span>';
+            }
+            ?>
+            <a href="courseRegistration.php" class="add-button">Add Course</a><br>
+            <ul class="list-group">
 
-                echo ' <tr>
+                <table class="table table-dark">
+                    <thead>
+
+                    <?php
+                    if (is_array($coursesList) && count($coursesList)) {
+
+                        echo ' <tr>
                 <th scope="col">Course Code</th>
                 <th scope="col">Course Name</th>
                 <th scope="col">Location</th>
@@ -45,8 +50,8 @@ if (isset($_GET['delete'])) {
             </thead>
             <tbody>';
 
-                foreach ($coursesList as $item => $value) {
-                    echo '
+                        foreach ($coursesList as $item => $value) {
+                            echo '
         <tr>
                 <td>' . $value['code'] . '</td>
                 <td>' . $value['name'] . '</td>
@@ -56,13 +61,15 @@ if (isset($_GET['delete'])) {
                 <td><a href="coursesList.php?delete=' . $value['id'] . '" onclick="return confirm(`Are you sure you want to delete this record (' . $value['name'] . ')?`)">Delete</a></td>
             </tr>
         ';
-                }
-            } else {
-                echo '<p class="list-group-item d-flex justify-content-between align-items-center">No items found</p>';
-            }
+                        }
+                    } else {
+                        echo '<p class="list-group-item d-flex justify-content-between align-items-center">No items found</p>';
+                    }
 
-            ?>
-            </tbody>
-        </table>
-    </ul>
+                    ?>
+                    </tbody>
+                </table>
+            </ul>
+        </div>
+    </div>
 </div>
