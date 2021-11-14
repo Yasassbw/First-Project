@@ -67,7 +67,7 @@ if (isset($_GET['delete'])) {
                                 $courseCode = $n['code'];
                             }
 
-                            $photo = ($value['photo']) ? : './images/photo.jpeg';
+                            $photo = ($value['photo']  !== 'null') ? $value['photo'] : './images/photo.jpeg';
 
                             echo '
         <tr>
