@@ -2,6 +2,11 @@
 
 include './code/header.php';
 $conn = OpenCon();
+if (empty($currentUser))
+{
+    header('Location: login.php');
+    exit;
+}
 $studentsList = getStudentsList($conn);
 
 if (isset($_GET['delete'])) {
@@ -72,8 +77,8 @@ if (isset($_GET['delete'])) {
                 <td>' . $value['email'] . '</td>
                 <td>' . $value['address'] . '</td>
                 <td>' . $courseCode . '</td>
-                <td><a href="studentRegistration.php?edit=' . $value['id'] . '">Edit</a></td>
-                <td><a href="studentsList.php?delete=' . $value['id'] . '" onclick="return confirm(`Are you sure you want to delete this record (' . $value['name'] . ')?`)">Delete</a></td>
+                <td><a class="edit-button" href="studentRegistration.php?edit=' . $value['id'] . '">Edit</a></td>
+                <td><a class="delete-button" href="studentsList.php?delete=' . $value['id'] . '" onclick="return confirm(`Are you sure you want to delete this record (' . $value['name'] . ')?`)">Delete</a></td>
             </tr>
         ';
                         }

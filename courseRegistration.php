@@ -2,6 +2,12 @@
 include './code/header.php';
 
 $conn = OpenCon();
+if (empty($currentUser))
+{
+    header('Location: login.php');
+    exit;
+}
+
 
 $id = null;
 $code = null;
@@ -59,8 +65,15 @@ if (isset($_POST['update'])) {
 ?>
 <form name="course-registration-form" action="" method="post">
     <div class="container">
-        <h1>Add Course</h1>
-        <p>Please fill in this form to add a new course.</p><br>
+        <div class="button-container">
+            <?php if ($id) {
+                echo '
+        <button class="no-print print-button" onclick="window.print()">Print this page</button>';
+            } ?>
+            <a href="coursesList.php" class="list-button no-print">All Courses</a><br>
+        </div>
+        <h1 class="no-print">Add Course</h1>
+        <p class="no-print">Please fill in this form to add a new course.</p><br>
         <span class="registration-error" id="registration-error"></span>
         <?php
         if (isset($_GET['session-success-message'])) {
@@ -89,7 +102,7 @@ if (isset($_POST['update'])) {
 
         <hr>
         <?php if ($update == true): ?>
-            <button type="submit" class="registerbtn" name="update" style="background: #556B2F;" >update</button>
+            <button type="submit" class="registerbtn no-print" name="update" style="background: #556B2F;" >update</button>
         <?php else: ?>
             <button type="submit" name="save" class="registerbtn">Submit</button>
         <?php endif ?>

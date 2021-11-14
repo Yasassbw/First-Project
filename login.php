@@ -51,8 +51,4 @@ if (isset($_POST['email'], $_POST['password'])) {
 
         <button type="submit" class="registerbtn">Login</button>
     </div>
-
-    <div class="container signin">
-        <p>Forgot password? <a href="#">click here</a>.</p>
-    </div>
 </form>

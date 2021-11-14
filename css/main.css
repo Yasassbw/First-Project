@@ -168,3 +168,113 @@ hr {
 table {
     margin-top: 4rem;
 }
+
+.edit-button {
+    padding: 10px;
+    color: white;
+    background-color: green !important;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    width: 90px;
+}
+
+.edit-button:hover {
+    background-color: rgba(0, 128, 0, 0.56) !important;
+    text-decoration: none;
+}
+
+.delete-button {
+    padding: 10px;
+    color: white;
+    background-color: #5e0606 !important;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    width: 90px;
+}
+
+.delete-button:hover {
+    background-color: rgba(94, 6, 6, 0.72) !important;
+    text-decoration: none;
+}
+
+.navbar-inverse {
+    background-color: #09528f !important;
+    border-color: #09528e !important;
+    color: white;
+    margin-bottom: 0;
+}
+
+.navbar-inverse a {
+    color: white !important;
+}
+
+@media print {
+    .print-section {
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 18px;
+        z-index: 10;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+
+form {
+    position: relative;
+}
+
+.button-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: auto;
+    right: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.print-button {
+    position: absolute;
+    color: white;
+    background-color: #a94f02 !important;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    border: none;
+    padding : 10px;
+    float: right;
+    right: 0;
+}
+.print-button:hover {
+    background-color: rgba(169, 79, 2, 0.69) !important;
+}
+.list-button{
+    position: absolute;
+    color: white;
+    background-color: rgba(0, 126, 255, 0.82) !important;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    border: none;
+    padding : 10px;
+    right: 12rem;
+}
+.list-button:hover {
+    background-color: rgba(0, 126, 255, 0.82) !important;
+}

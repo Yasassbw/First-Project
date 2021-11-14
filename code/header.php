@@ -5,7 +5,6 @@ $conn = OpenCon();
 include 'functions.php';
 $currentUser = checkLogin($conn);
 
-
 ?>
 
 <meta charset="utf-8">
@@ -21,10 +20,7 @@ $currentUser = checkLogin($conn);
         <div class="navbar-header">
             <a class="navbar-brand" href="/">Student Management System</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="<?php echo (getCurrentPage() == 'index.php' ? 'active' : '') ; ?>"><a href="index.php">Students</a></li>
-            <li class="<?php echo (getCurrentPage() == 'coursesList.php' ? 'active' : '') ; ?>"><a href="coursesList.php">Courses</a></li>
-        </ul>
+
         <ul class="nav navbar-nav navbar-right">
 
             <?php
